@@ -4,22 +4,15 @@ name: CodeQL
 # workflow only analyzes the Python tooling under scripts/ and bindings/python/.
 # See CLAUDE.md: OxiDex is a Rust implementation of ExifTool with a secondary
 # Python surface (build/analysis scripts + FFI bindings).
+#
+# CodeQL runs only when a release build is cut: on a `v*` tag push, which is
+# what release.yml builds from (dev, beta and prod tags alike), or on demand.
+# It does not run on pull_request, merge_group, pushes to main or a schedule.
 
 on:
   push:
-    branches: ['**']
-    paths:
-      - 'scripts/**.py'
-      - 'bindings/python/**.py'
-      - '.github/workflows/codeql.yml'
-  pull_request:
-    branches: ['**']
-    paths:
-      - 'scripts/**.py'
-      - 'bindings/python/**.py'
-      - '.github/workflows/codeql.yml'
-  schedule:
-    - cron: '17 3 * * 1'
+    tags: ['v*']
+  workflow_dispatch:
 
 jobs:
   analyze:

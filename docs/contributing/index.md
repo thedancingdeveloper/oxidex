@@ -482,7 +482,7 @@ Describe testing done:
 
 ### Review Process
 
-1. **Automated Checks:** CI runs tests, linting, benchmarks
+1. **Automated Checks:** CI runs tests, linting, benchmarks. CodeQL runs only when a release tag (`v*`) is pushed or on manual dispatch, not on pull requests
 2. **Code Review:** Maintainer reviews code quality, design
 3. **Feedback:** Address review comments
 4. **Approval:** Maintainer approves and merges
